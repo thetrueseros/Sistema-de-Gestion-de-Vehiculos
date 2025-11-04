@@ -16,6 +16,7 @@ namespace Sistema_de_Gestion_de_Vehiculos
         public Form1()
         {
             InitializeComponent();
+            LimpiarCampos();
             ActualizarListaVehiculos();
         }
 
