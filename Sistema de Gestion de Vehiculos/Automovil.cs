@@ -17,7 +17,10 @@ namespace Sistema_de_Gestion_de_Vehiculos
             {
                 return precioBase * 1.1;
             }
-            return 0;
+            else
+            {
+                return precioBase;
+            }
         }
     }
 }
