@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
-using System.Windows.Forms;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,8 +10,9 @@ namespace Sistema_de_Gestion_de_Vehiculos
     public class VehiculoRepository
     {
         public static VehiculoRepository instancia;
-        private List<Vehiculo> vehiculos = new List<Vehiculo>();
+        private List<string> vehiculos = new List<string>();
         private readonly string rutaArchivo = "vehiculos.txt";
+
         /// <summary>
         /// Constructor privado para implementar el patrón Singleton
         /// </summary>
@@ -22,14 +22,14 @@ namespace Sistema_de_Gestion_de_Vehiculos
             {
                 File.Create(rutaArchivo).Close();
             }
-            ObtenerListaVehiculos();
+            vehiculos = File.ReadAllLines(rutaArchivo).ToList();
         }
+
         /// <summary>
         /// Instancia singleton de VehiculoRepository
         /// </summary>
         public static VehiculoRepository Instancia
         {
-            ///crea instancia si no hay
             get
             {
                 if (instancia == null)
@@ -37,40 +37,32 @@ namespace Sistema_de_Gestion_de_Vehiculos
                 return instancia;
             }
         }
+
         /// <summary>
-        /// Para obtener la lista de vehículos desde el archivo de texto
+        /// Devuelve una copia de la lista de líneas (para mostrar en la UI)
         /// </summary>
-        /// <returns></returns>
         public List<string> ObtenerListaVehiculos()
         {
-            if (File.Exists(rutaArchivo))
-            {
-                return File.ReadAllLines(rutaArchivo).ToList();
-            }
-            return new List<string>();
-        }
-        /// <summary>
-        /// Para agregar vehiculos a la lista interna y guardarlos en el archivo de texto
-        /// </summary>
-        /// <param name="veh"></param>
-        public void Agregar(Vehiculo veh)
-        {
-            vehiculos.Add(veh);
-            Guardar();
-        }
-        /// <summary>
-        /// Para guardar los vehiculos de la lista interna al archivo de texto
-        /// </summary>
-        private void Guardar()
-        {
-            using (StreamWriter sw = new StreamWriter(rutaArchivo))
-            {
-                foreach (var veh in vehiculos)
-                    sw.WriteLine("Marca: " + veh.marca+
-                        ", Modelo: " + veh.modelo+
-                        ", Precio final: " + veh.CalcularPrecioFinal(veh.precioBase));
-            }
+            // se devuelve una copia para evitar modificaciones directas desde la UI
+            return new List<string>(vehiculos);
         }
 
+        /// <summary>
+        /// Agrega un vehículo (construye la línea) y la guarda en el fichero en modo append
+        /// </summary>
+        public void Agregar(Vehiculo veh)
+        {
+            if (veh == null) return;
+            string linea = "Marca: " + veh.marca +
+                           ", Modelo: " + veh.modelo +
+                           ", Precio final: " + veh.CalcularPrecioFinal(veh.precioBase);
+            vehiculos.Add(linea);
+
+            // Guardamos sólo la línea nueva en modo append para no sobrescribir el fichero
+            using (StreamWriter sw = new StreamWriter(rutaArchivo, true))
+            {
+                sw.WriteLine(linea);
+            }
+        }
     }
 }
