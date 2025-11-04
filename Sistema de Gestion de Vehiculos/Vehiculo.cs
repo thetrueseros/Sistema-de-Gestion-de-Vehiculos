@@ -8,9 +8,9 @@ namespace Sistema_de_Gestion_de_Vehiculos
 {
     public abstract class Vehiculo
     {
-        private string marca { get; set; }
-        private string modelo { get; set; }
-        private double precioBase { get; set; }
+        public string marca { get; set; }
+        public string modelo { get; set; }
+        public double precioBase { get; set; }
         private double precioFinal { get; set; }
         public Vehiculo(string marca, string modelo,  double precioBase)
         {

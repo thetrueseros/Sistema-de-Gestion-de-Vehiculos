@@ -16,6 +16,7 @@ namespace Sistema_de_Gestion_de_Vehiculos
         public Form1()
         {
             InitializeComponent();
+            ActualizarListaVehiculos();
         }
 
         private void btnAgregarVehiculo_Click(object sender, EventArgs e)
@@ -58,7 +59,15 @@ namespace Sistema_de_Gestion_de_Vehiculos
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            Vehiculo vehiculo = VehiculoFactory.CrearVehiculo(cmbTipo.Text, txtbMarca.Text, txtbModelo.Text, double.Parse(txtbPrecioBase.Text));
+            Vehiculo vehiculo = VehiculoFactory.CrearVehiculo(cmbTipo.Text, 
+                txtbMarca.Text, 
+                txtbModelo.Text, 
+                double.Parse(txtbPrecioBase.Text));
+            VehiculoRepository.Instancia.Agregar(vehiculo);
+            LimpiarCampos();
+            lstVehiculos.Items.Clear();
+            ActualizarListaVehiculos();
+            MessageBox.Show("Vehículo agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         private void LimpiarCampos()
         {
@@ -66,6 +75,14 @@ namespace Sistema_de_Gestion_de_Vehiculos
             txtbModelo.Clear();
             txtbPrecioBase.Clear();
             cmbTipo.SelectedIndex = 0;
+        }
+        public void ActualizarListaVehiculos()
+        {
+            lstVehiculos.Items.Clear();
+            foreach (string linea in VehiculoRepository.Instancia.ObtenerListaVehiculos())
+            {
+                lstVehiculos.Items.Add(linea);
+            }
         }
     }
 }
