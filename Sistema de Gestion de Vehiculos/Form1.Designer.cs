@@ -37,8 +37,8 @@
             this.txtbMarca = new System.Windows.Forms.TextBox();
             this.txtbModelo = new System.Windows.Forms.TextBox();
             this.txtbPrecioBase = new System.Windows.Forms.TextBox();
-            this.lstVehiculos = new System.Windows.Forms.ListView();
             this.btnAgregarVehiculo = new System.Windows.Forms.Button();
+            this.lstVehiculos = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // lblSisGesVehiculos
@@ -143,19 +143,6 @@
             this.txtbPrecioBase.Size = new System.Drawing.Size(121, 20);
             this.txtbPrecioBase.TabIndex = 8;
             // 
-            // lstVehiculos
-            // 
-            this.lstVehiculos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lstVehiculos.HideSelection = false;
-            this.lstVehiculos.Location = new System.Drawing.Point(365, 95);
-            this.lstVehiculos.MinimumSize = new System.Drawing.Size(423, 167);
-            this.lstVehiculos.Name = "lstVehiculos";
-            this.lstVehiculos.Size = new System.Drawing.Size(423, 167);
-            this.lstVehiculos.TabIndex = 9;
-            this.lstVehiculos.UseCompatibleStateImageBehavior = false;
-            // 
             // btnAgregarVehiculo
             // 
             this.btnAgregarVehiculo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -169,13 +156,23 @@
             this.btnAgregarVehiculo.UseVisualStyleBackColor = true;
             this.btnAgregarVehiculo.Click += new System.EventHandler(this.btnAgregarVehiculo_Click);
             // 
+            // lstVehiculos
+            // 
+            this.lstVehiculos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lstVehiculos.FormattingEnabled = true;
+            this.lstVehiculos.Location = new System.Drawing.Point(360, 95);
+            this.lstVehiculos.MinimumSize = new System.Drawing.Size(405, 173);
+            this.lstVehiculos.Name = "lstVehiculos";
+            this.lstVehiculos.Size = new System.Drawing.Size(405, 173);
+            this.lstVehiculos.TabIndex = 11;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 340);
-            this.Controls.Add(this.btnAgregarVehiculo);
             this.Controls.Add(this.lstVehiculos);
+            this.Controls.Add(this.btnAgregarVehiculo);
             this.Controls.Add(this.txtbPrecioBase);
             this.Controls.Add(this.txtbModelo);
             this.Controls.Add(this.txtbMarca);
@@ -204,8 +201,8 @@
         private System.Windows.Forms.TextBox txtbMarca;
         private System.Windows.Forms.TextBox txtbModelo;
         private System.Windows.Forms.TextBox txtbPrecioBase;
-        private System.Windows.Forms.ListView lstVehiculos;
         private System.Windows.Forms.Button btnAgregarVehiculo;
+        private System.Windows.Forms.ListBox lstVehiculos;
     }
 }
 
