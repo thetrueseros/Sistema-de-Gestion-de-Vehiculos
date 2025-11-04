@@ -58,6 +58,7 @@ namespace Sistema_de_Gestion_de_Vehiculos
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            Vehiculo vehiculo = VehiculoFactory.CrearVehiculo(cmbTipo.Text, txtbMarca.Text, txtbModelo.Text, double.Parse(txtbPrecioBase.Text));
         }
         private void LimpiarCampos()
         {
