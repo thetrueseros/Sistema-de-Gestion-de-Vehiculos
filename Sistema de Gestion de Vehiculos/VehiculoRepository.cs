@@ -33,9 +33,7 @@ namespace Sistema_de_Gestion_de_Vehiculos
             get
             {
                 if (instancia == null)
-                {
                     instancia = new VehiculoRepository();
-                }
                 return instancia;
             }
         }
@@ -68,9 +66,9 @@ namespace Sistema_de_Gestion_de_Vehiculos
             using (StreamWriter sw = new StreamWriter(rutaArchivo))
             {
                 foreach (var veh in vehiculos)
-                {
-                    sw.WriteLine($"Marca: {veh.marca.ToString()}, Modelo: {veh.modelo.ToString()}, Precio final: {veh.CalcularPrecioFinal(veh.precioBase)}");
-                }
+                    sw.WriteLine("Marca: " + veh.marca+
+                        ", Modelo: " + veh.modelo+
+                        ", Precio final: " + veh.CalcularPrecioFinal(veh.precioBase));
             }
         }
 
